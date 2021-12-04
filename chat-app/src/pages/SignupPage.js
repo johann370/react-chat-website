@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Form from '../components/Form'
 
-const LoginPage = () => {
+const SignupPage = () => {
     const navitems = [
         {
             link: "/login",
@@ -15,6 +15,11 @@ const LoginPage = () => {
     ]
     const form_inputs = [
         {
+            label: "Username:",
+            input_type: "text",
+            placeholder: "Username"
+        },
+        {
             label: "Email:",
             input_type: "text",
             placeholder: "Email"
@@ -23,14 +28,19 @@ const LoginPage = () => {
             label: "Password:",
             input_type: "password",
             placeholder: "Password"
+        },
+        {
+            label: "Re-enter Password:",
+            input_type: "password",
+            placeholder: "Re-enter Password"
         }
     ]
     return (
         <div>
             <Navbar navitems={navitems} />
-            <Form form_inputs={form_inputs} submit_value="Log In" header="Log In" />
+            <Form form_inputs={form_inputs} submit_value="Sign up" header="Sign Up" />
         </div>
     )
 }
 
-export default LoginPage
+export default SignupPage
