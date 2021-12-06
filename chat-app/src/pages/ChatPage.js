@@ -1,6 +1,6 @@
 import React from 'react'
 import ChatBox from '../components/ChatBox'
-import MessageInput from '../components/MessageInput'
+import Members from '../components/Members'
 import Navbar from '../components/Navbar'
 
 const ChatPage = () => {
@@ -23,6 +23,21 @@ const ChatPage = () => {
         },
     ]
 
+    const members = [
+        {
+            "username": "user"
+        },
+        {
+            "username": "john"
+        },
+        {
+            "username": "tom"
+        },
+        {
+            "username": "random123"
+        },
+    ]
+
     const navitems = [
         {
             "link": "/chat",
@@ -33,7 +48,11 @@ const ChatPage = () => {
     return (
         <div>
             <Navbar navitems={navitems} />
-            <ChatBox messages={messages} />
+
+            <div className="chat-page-content">
+                <Members members={members} />
+                <ChatBox messages={messages} />
+            </div>
         </div>
     )
 }

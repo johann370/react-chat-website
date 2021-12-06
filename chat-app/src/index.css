@@ -58,14 +58,20 @@
   height: 30px;
 }
 
+.chat-page-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 10px;
+  margin-top: 50px;
+}
+
 .chat {
   display: flex;
   flex-direction: column;
-  margin: auto;
-  margin-top: 50px;
   width: 900px;
   height: 800px;
-  border: 2px solid rgb(50, 1, 114);
+  border: 5px solid rgb(50, 1, 114);
 }
 
 .message {
@@ -97,4 +103,14 @@
   background-color:rgb(145, 139, 146);
   color: white;
   font-size: 14pt;
+}
+
+.members {
+  width: 300px;
+  border: 5px solid rgb(50, 1, 114);
+  padding: 10px;
+}
+
+.members p {
+  font-size: 20pt;
 }
