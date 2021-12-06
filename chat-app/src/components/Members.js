@@ -1,8 +1,8 @@
-import Member from "./Member"
+import Member from './Member'
 
 const Members = ({ members }) => {
     return (
-        <div className="members">
+        <div className='members'>
             {
                 members.map((member) => (
                     <Member username={member.username} />

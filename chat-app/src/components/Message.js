@@ -1,6 +1,6 @@
 const Message = ({ author, content }) => {
     return (
-        <div className="message">
+        <div className='message'>
             <p>{author}</p>
             <p>{content}</p>
         </div>

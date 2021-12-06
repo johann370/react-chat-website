@@ -6,42 +6,42 @@ import Navbar from '../components/Navbar'
 const ChatPage = () => {
     const messages = [
         {
-            "author": "user",
-            "content": "first message"
+            'author': 'user',
+            'content': 'first message'
         },
         {
-            "author": "user",
-            "content": "second message"
+            'author': 'user',
+            'content': 'second message'
         },
         {
-            "author": "juan",
-            "content": "hello"
+            'author': 'juan',
+            'content': 'hello'
         },
         {
-            "author": "user",
-            "content": "test"
+            'author': 'user',
+            'content': 'test'
         },
     ]
 
     const members = [
         {
-            "username": "user"
+            'username': 'user'
         },
         {
-            "username": "john"
+            'username': 'john'
         },
         {
-            "username": "tom"
+            'username': 'tom'
         },
         {
-            "username": "random123"
+            'username': 'random123'
         },
     ]
 
     const navitems = [
         {
-            "link": "/chat",
-            "text": "Chat"
+            'link': '/chat',
+            'text': 'Chat'
         }
     ]
 
@@ -49,7 +49,7 @@ const ChatPage = () => {
         <div>
             <Navbar navitems={navitems} />
 
-            <div className="chat-page-content">
+            <div className='chat-page-content'>
                 <Members members={members} />
                 <ChatBox messages={messages} />
             </div>
