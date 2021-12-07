@@ -5,7 +5,7 @@ const Members = ({ members }) => {
         <div className='members'>
             {
                 members.map((member) => (
-                    <Member username={member.username} />
+                    <Member username={member.user.username} />
                 ))
             }
         </div>

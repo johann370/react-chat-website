@@ -1,15 +1,17 @@
 import Message from './Message'
 import MessageInput from './MessageInput'
 
-const ChatBox = ({ messages }) => {
+const ChatBox = ({ messages, onSubmit, input, setInput }) => {
+
     return (
         <div className='chat'>
-            {
-                messages.map((message) => (
-                    <Message author={message.author} content={message.content} />
-                ))
-            }
-            <MessageInput />
+            <div className='messages'>
+                {messages.map((message) => (
+                    <Message author={message.author.username} content={message.content} />
+                ))}
+            </div>
+
+            <MessageInput onSubmit={onSubmit} input={input} setInput={setInput} />
         </div>
     )
 }

@@ -1,42 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ChatBox from '../components/ChatBox'
 import Members from '../components/Members'
 import Navbar from '../components/Navbar'
+import ServerSelect from '../components/ServerSelect'
 
-const ChatPage = () => {
-    const messages = [
-        {
-            'author': 'user',
-            'content': 'first message'
-        },
-        {
-            'author': 'user',
-            'content': 'second message'
-        },
-        {
-            'author': 'juan',
-            'content': 'hello'
-        },
-        {
-            'author': 'user',
-            'content': 'test'
-        },
-    ]
-
-    const members = [
-        {
-            'username': 'user'
-        },
-        {
-            'username': 'john'
-        },
-        {
-            'username': 'tom'
-        },
-        {
-            'username': 'random123'
-        },
-    ]
+const ChatPage = ({ url, loggedIn, setLoggedIn }) => {
+    const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [servers, setServers] = useState([]);
+    const [selectedServer, setSelectedServer] = useState();
+    const [members, setMembers] = useState([]);
+    const [input, setInput] = useState("");
+    const [chatUpdated, setChatUpdated] = useState(false);
 
     const navitems = [
         {
@@ -45,13 +20,74 @@ const ChatPage = () => {
         }
     ]
 
+    useEffect(() => {
+        if (selectedServer || chatUpdated) {
+            fetch(`${url}/messages/${selectedServer}`, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setMessages(data);
+                })
+                .finally(() => {
+                    setLoading(false);
+                    setChatUpdated(false);
+                    var element = document.getElementsByClassName('messages');
+                    element[0].scrollTop = element[0].scrollHeight;
+                })
+        }
+    }, [selectedServer, chatUpdated])
+
+    useEffect(async () => {
+        const user_id = sessionStorage.getItem('user_id');
+        const response = await fetch(`${url}/users/${user_id}/servers`, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('access_token')
+            }
+        })
+        const data = await response.json();
+        setServers(data);
+    }, [])
+
+    useEffect(async () => {
+        if (selectedServer) {
+            const response = await fetch(`${url}/servers/${selectedServer}/members`, {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                }
+            })
+            const data = await response.json();
+            setMembers(data);
+        }
+    }, [selectedServer])
+
+    const sendMessage = async (e) => {
+        e.preventDefault();
+        if (selectedServer) {
+            const response = await fetch(`${url}/messages/${selectedServer}`, {
+                method: "POST",
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 'content': input })
+            })
+            const data = await response.json();
+            setInput("");
+            setChatUpdated(true);
+        }
+    }
+
+
     return (
         <div>
             <Navbar navitems={navitems} />
-
+            {servers && <ServerSelect servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} />}
             <div className='chat-page-content'>
-                <Members members={members} />
-                <ChatBox messages={messages} />
+                {members && <Members members={members} />}
+                {servers && < ChatBox messages={messages} onSubmit={sendMessage} input={input} setInput={setInput} />}
             </div>
         </div>
     )
