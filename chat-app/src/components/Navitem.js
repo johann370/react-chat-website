@@ -1,6 +1,6 @@
-const Navitem = ({ link, text }) => {
+const Navitem = ({ link, text, onClick }) => {
     return (
-        <a href={link}>{text}</a>
+        <a href={link} onClick={onClick}>{text}</a>
     )
 }
 

@@ -1,13 +1,15 @@
 import Navitem from './Navitem'
 
-const Navbar = ({ navitems }) => {
+const Navbar = ({ loggedIn, setLoggedIn }) => {
+    const logout = () => {
+        localStorage.removeItem('acces_token');
+        sessionStorage.removeItem('user_id');
+        setLoggedIn(false);
+    }
+
     return (
         <div className='navbar'>
-            {
-                navitems.map((navitem) => (
-                    <Navitem key={navitem.text} link={navitem.link} text={navitem.text} />
-                ))
-            }
+            {loggedIn ? ([<Navitem link='/chat' text='Chat' />, <Navitem onClick={logout} link='/login' text='Log Out' />]) : ([<Navitem link='/login' text='Log in' />, <Navitem link='signup' text='Sign up' />])}
         </div>
     )
 }

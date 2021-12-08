@@ -83,7 +83,7 @@ const ChatPage = ({ url, loggedIn, setLoggedIn }) => {
 
     return (
         <div>
-            <Navbar navitems={navitems} />
+            <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             {servers && <ServerSelect servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} />}
             <div className='chat-page-content'>
                 {members && <Members members={members} />}
