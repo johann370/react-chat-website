@@ -6,7 +6,6 @@ import ServerSelect from '../components/ServerSelect'
 
 const ChatPage = ({ url, loggedIn, setLoggedIn }) => {
     const [messages, setMessages] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [servers, setServers] = useState([]);
     const [selectedServer, setSelectedServer] = useState();
     const [members, setMembers] = useState([]);
@@ -14,13 +13,6 @@ const ChatPage = ({ url, loggedIn, setLoggedIn }) => {
     const [chatUpdated, setChatUpdated] = useState(false);
 
     setLoggedIn(localStorage.getItem('loggedIn'));
-
-    const navitems = [
-        {
-            'link': '/chat',
-            'text': 'Chat'
-        }
-    ]
 
     useEffect(() => {
         if (selectedServer || chatUpdated) {
@@ -34,7 +26,6 @@ const ChatPage = ({ url, loggedIn, setLoggedIn }) => {
                     setMessages(data);
                 })
                 .finally(() => {
-                    setLoading(false);
                     setChatUpdated(false);
                     var element = document.getElementsByClassName('messages');
                     element[0].scrollTop = element[0].scrollHeight;

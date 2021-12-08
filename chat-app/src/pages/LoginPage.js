@@ -29,16 +29,6 @@ const LoginPage = ({ url, loggedIn, setLoggedIn }) => {
 
     }
 
-    const navitems = [
-        {
-            link: '/login',
-            text: 'Log in'
-        },
-        {
-            link: '/signup',
-            text: 'Sign up'
-        }
-    ]
     const form_inputs = [
         {
             label: 'Email:',
@@ -58,7 +48,7 @@ const LoginPage = ({ url, loggedIn, setLoggedIn }) => {
     return (
         <div>
             {loggedIn && (<Navigate to='/chat' replace={true} />)}
-            <Navbar navitems={navitems} />
+            <Navbar loggedIn={loggedIn} />
             <Form onSubmit={login} form_inputs={form_inputs} submit_value='Log In' header='Log In' />
         </div>
     )

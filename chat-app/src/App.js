@@ -17,7 +17,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<LoginPage url={url} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/signup" element={<SignupPage url={url} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/chat" element={<ChatPage url={url} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
       </Routes>
     </Router>
