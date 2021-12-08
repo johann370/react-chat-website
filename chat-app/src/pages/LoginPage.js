@@ -23,6 +23,7 @@ const LoginPage = ({ url, loggedIn, setLoggedIn }) => {
             .then(data => {
                 localStorage.setItem("access_token", data["access_token"])
                 sessionStorage.setItem("user_id", data["user_id"]);
+                localStorage.setItem('loggedIn', true)
                 setLoggedIn(true);
             })
 

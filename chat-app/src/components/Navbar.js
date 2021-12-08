@@ -4,6 +4,7 @@ const Navbar = ({ loggedIn, setLoggedIn }) => {
     const logout = () => {
         localStorage.removeItem('acces_token');
         sessionStorage.removeItem('user_id');
+        localStorage.setItem('loggedIn', false)
         setLoggedIn(false);
     }
 

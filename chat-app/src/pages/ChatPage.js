@@ -13,6 +13,8 @@ const ChatPage = ({ url, loggedIn, setLoggedIn }) => {
     const [input, setInput] = useState("");
     const [chatUpdated, setChatUpdated] = useState(false);
 
+    setLoggedIn(localStorage.getItem('loggedIn'));
+
     const navitems = [
         {
             'link': '/chat',
